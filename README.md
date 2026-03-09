@@ -11,7 +11,7 @@ and ledger systems.
 
 You have 1 million financial transactions. Each transaction record is 120 bytes:
 
-```
+```rust
 struct Transaction {
     amount: f64,         //  8 bytes  ← hot field
     timestamp: u64,      //  8 bytes
@@ -58,8 +58,8 @@ perf stat -e cache-misses,cache-references,L1-dcache-load-misses,LLC-load-misses
 cargo install cargo-show-asm
 
 # Compare vectorization between layouts
-cargo asm --lib aos_vs_soa::total_volume_aos
-cargo asm --lib aos_vs_soa::total_volume_soa
+cargo asm --lib soa_perf_rs::total_volume_aos
+cargo asm --lib soa_perf_rs::total_volume_soa
 ```
 
 The SoA version of `total_volume` should show SIMD instructions
